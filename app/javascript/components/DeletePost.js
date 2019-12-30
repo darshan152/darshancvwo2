@@ -2,7 +2,7 @@ import React, {Props} from "react";
 import {navigate} from "@reach/router";
 import { Formik, Field, Form } from "formik";
 
-function EditPost() {
+function DeletePost() {
   
   const handleSubmit = values => {
     const requestPosts = async () => {
@@ -12,44 +12,29 @@ function EditPost() {
       // recognize the request as a valid request
       const csrfToken = document.querySelector("meta[name=csrf-token]").content;
       const response  = await fetch("/api/posts/" + id, {
-        method: "PATCH",
+        method: "DELETE",
         credentials: "include",
         headers: {
           "Content-Type": "application/vnd.api+json",
           "X-CSRF-Token": csrfToken
         },
-        body: JSON.stringify({ data: {id:id,type:"posts", attributes:{title:values.attributes.title,body:values.attributes.body}} })
+       
       });
-      if (response.status===200) {
+
+      if (response.status===204) {
         navigate("/");
       }
     };
     requestPosts();
   };
-  const id = window.location.pathname.slice(6);
+  const id = window.location.pathname.slice(5);
   return (
     <div>
 
   <p>{id}</p>
-  <p>Edit Post</p>
-      <Formik
-        initialValues={{
-          type: "posts",
-          attributes: {
-            title: "",
-            body: ""
-          }
-        }}
-        onSubmit={handleSubmit}
-        render={() => (
-          <Form>
-            <Field type="text" name="attributes.title" />
-            <Field type="text" name="attributes.body" />
+  <p>Delete Post</p>
 
-            <button type="submit">Create</button>
-          </Form>
-        )}
-      />
+    <button onClick={()=>handleSubmit()}>Delete</button>
     <button onClick={()=> navigate('/')}>
     Back
     </button>
@@ -57,4 +42,4 @@ function EditPost() {
   );
 }
 
-export default EditPost;
+export default DeletePost;

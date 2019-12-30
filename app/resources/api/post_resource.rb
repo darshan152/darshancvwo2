@@ -1,3 +1,3 @@
 class Api::PostResource < JSONAPI::Resource
-  attributes :title, :body
+  attributes :title, :body, :done
 end
