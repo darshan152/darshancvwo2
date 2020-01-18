@@ -87,7 +87,7 @@ function PostList() {
     <div>
    	  <h2>To-Do List</h2>
       <select onChange={displayposts} id="filterval">
-        <option>Choose a Category</option>
+        <option value="All">Choose a Category</option>
         <option value="All">All</option>
         {options}
       </select>
