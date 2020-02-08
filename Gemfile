@@ -51,3 +51,5 @@ gem "react-rails", "~> 2.6"
 
 
 gem "jsonapi-resources"
+
+gem 'rails_12factor', group: :production
