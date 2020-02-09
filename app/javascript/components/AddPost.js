@@ -22,7 +22,7 @@ function AddPost(Category) {
         body: JSON.stringify({ data: values })
       });
       if (response.status === 201) {
-        navigate("/");
+        window.history.back();
       }
     };
     requestPosts();
@@ -31,14 +31,25 @@ function AddPost(Category) {
   //Setting default value for category in formik
   let cat;
   if (Category.cat!="All"){
-    cat = Category.cat
+    cat = Category.cat;
   }else{
-    cat=""
+    cat = "";
   }
+
+  //Fuction to ensure posts are not empty
+  function validate(value){
+    let error;
+    if(!value){
+      error = "Required";
+    }
+    return error;
+  }
+
 
   return (
     <div>
-      <h2>Add your post</h2>
+      <h2 class="p-4">Add your post</h2>
+      <div class= "p-2">
       <Formik
         initialValues={{
           type: "posts",
@@ -50,13 +61,16 @@ function AddPost(Category) {
         onSubmit={handleAdd}
         render={() => (
           <Form>
-            <Field type="text" name="attributes.title" placeholder="Title" />
-            <Field type="text" name="attributes.body" placeholder="Category" />
-            <button type="submit">Create</button>
+            <Field class="m-2" type="text" validate={validate} name="attributes.title" placeholder="Title" />
+            <br/>
+            <Field class="m-2" type="text" validate={validate} name="attributes.body" placeholder="Category" />
+            <br/>
+            <button class="btn btn-primary mb-2" type="submit">Create</button>
           </Form>
         )}
       />
-      <button onClick={()=>window.history.back()}>
+      </div>
+      <button class="btn btn-info m-2" onClick={()=>window.history.back()}>
         Back
       </button>
     </div>

@@ -32,12 +32,21 @@ function EditPost(props) {
   //Getting id number of data
   const id = props.id;
 
+  //Fuction to ensure posts are not empty
+  function validate(value){
+    let error;
+    if(!value){
+      error = "Required";
+    }
+    return error;
+  }
+
   //Function to return the display in html
   function displayEdit(){
 
     return (
       <div>
-        <p>Edit Post</p>
+        <h3 class="m-4">Edit Post</h3>
         <Formik
           initialValues={{
             type: "posts",
@@ -48,14 +57,14 @@ function EditPost(props) {
           onSubmit={handleEdit}
           render={() => (
             <Form>
-              <Field type="text" name="attributes.title" placeholder="New Title" />
-              <button type="submit">
+              <Field class="ml-2" type="text" validate={validate} name="attributes.title" placeholder="New Title" />
+              <button class="btn btn-warning ml-2" type="submit">
                 Edit
               </button>
             </Form>
           )}
         />
-        <button onClick={()=> window.history.back()}>
+        <button class="btn btn-info m-2" onClick={()=> window.history.back()}>
           Back
         </button>
       </div>

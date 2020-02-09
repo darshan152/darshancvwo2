@@ -1,6 +1,6 @@
 import React, {Props} from "react";
 import {navigate} from "@reach/router";
-import { Formik, Field, Form } from "formik";
+import {Formik, Field, Form} from "formik";
 
 function DeletePost(props) {
 
@@ -34,11 +34,11 @@ function DeletePost(props) {
 
   return (
     <div>
-      <p>Delete Post?</p>
-      <button onClick={()=>handleDelete()}>
+      <h3 class="m-4">Delete Post?</h3>
+      <button class="btn btn-danger m-2" onClick={()=>handleDelete()}>
         Delete
       </button>
-      <button onClick={()=> window.history.back()}>
+      <button class="btn btn-info" onClick={()=> window.history.back()}>
         Back
       </button>
     </div>

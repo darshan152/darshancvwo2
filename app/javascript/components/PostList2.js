@@ -30,27 +30,33 @@ function PostList2() {
   //Storing category buttons in options variable
   let options=uniquecats.map(cat=>{
     return (
-      <button onClick={()=> navigate('/display/'+cat)}>{cat}</button>
+      <div>
+      <button class="btn btn-info btn-block" onClick={()=> navigate('/display/'+cat)}>{cat}</button>
+      <br/>
+      <br/>
+      </div>
     )
   });
 
   return (
     <div>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-      <h1>To-Do List</h1>
+      <h1 class= "p-4 text-center">To-Do List</h1>
       <div class="container">
         <div class="row">
           <div class="col">
-            <button onClick={()=> navigate('/display/All')}>
+            <button class="btn btn-info btn-block" onClick={()=> navigate('/display/All')}>
               All
             </button>
+            <br/>
             <br/>
             {options}
           </div>
           <div class="col">
-            <button type="button" class="btn btn-primary" onClick={() => navigate('/add/All')}>
-  	          Add
-  	        </button>
+            <div class="float-sm-left">
+              <button type="button" class="btn btn-primary ml-4" onClick={() => navigate('/add/All')}>
+  	            Add more items
+  	          </button>
+            </div>
           </div>
         </div>
       </div>
